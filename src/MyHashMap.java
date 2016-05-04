@@ -4,7 +4,8 @@ import java.util.List;
 import java.util.LinkedList;
 
 public abstract class MyHashMap {
-	
+
+
 	// METHODS THAT MUST BE IMPLEMENTED
 	// IMPLEMENT THESE IN THE CHILDREN CLASSES
 	
@@ -24,7 +25,7 @@ public abstract class MyHashMap {
 	
 	public static void main(String[] args) {
 		
-		MyHashMap generalHashMap = new GeneralHashMap();
+		MyHashMap generalHashMap = new GeneralHashMap(0, 0);
 		MyHashMap specificHashMap = new SpecificHashMap();
 		
 		System.out.println("GENERAL HASH MAP RESULTS: ");
@@ -61,7 +62,7 @@ public abstract class MyHashMap {
 		long executionTime = 0;
 		long overheadExecutionTime = 0;
 		
-		System.out.println("ADDING ALL TOKENS");
+		//System.out.println("ADDING ALL TOKENS");
 		
 		overheadExecutionTime = System.currentTimeMillis();
 		
@@ -76,61 +77,61 @@ public abstract class MyHashMap {
 		
 		executionTime = System.currentTimeMillis() - executionTime;
 		
-		System.out.println("TESTING CORRECTNESS");
-		System.out.println("");
+		//System.out.println("TESTING CORRECTNESS");
+		//System.out.println("");
 		
-		System.out.print("BUCKETS INITIALIZED TEST: ");
+		//System.out.print("BUCKETS INITIALIZED TEST: ");
 		if(!hashMap.testBucketsInitialized()) {
-			System.out.println("FAIL");
-			System.out.println("YOU MUST HAVE AT LEAST 15 BUCKETS");
+			//System.out.println("FAIL");
+			//System.out.println("YOU MUST HAVE AT LEAST 15 BUCKETS");
 			return -1.0;
 		}
 		else {
-			System.out.println("PASS");
+			//System.out.println("PASS");
 		}
 		
-		System.out.print("ALL ELEMENTS ADDED TEST:  ");
+		//System.out.print("ALL ELEMENTS ADDED TEST:  ");
 		if(!hashMap.testTotalElements(allTokens.size())) {
-			System.out.println("FAIL");
+			//System.out.println("FAIL");
 			return -1.0;
 		}
 		else {
-			System.out.println("PASS");
+			//System.out.println("PASS");
 		}
 		
-		System.out.print("TOKEN DUPLCIATES TEST:    ");
+		//System.out.print("TOKEN DUPLCIATES TEST:    ");
 		if(!hashMap.testDuplicates()) {
-			System.out.println("FAIL");
+			//System.out.println("FAIL");
 			return -1.0;
 		}
 		else {
-			System.out.println("PASS");
+			//System.out.println("PASS");
 		}
 		
-		System.out.print("HASH CORRECTNESS TEST:    ");
+		//System.out.print("HASH CORRECTNESS TEST:    ");
 		if(!hashMap.testHashCorrectness()) {
-			System.out.println("FAIL");
+			//System.out.println("FAIL");
 			return -1.0;
 		}
 		else {
-			System.out.println("PASS");
+			//System.out.println("PASS");
 		}
 		
 		double evenScore = maxScore * hashMap.proportional(2) * hashMap.proportional(5) * hashMap.proportional(10);
 		double totalScore = evenScore;
 		
-		System.out.println("");
-		System.out.println("BUCKET UTILIZATION:       " + (hashMap.bucketUtilization() * 100) + "%");
-		System.out.println("AVERAGE BUCKET SIZE:      " + (hashMap.averageBucketSize()));
-		System.out.println("MAXIMUM BUCKET SIZE:      " + (hashMap.maximumBucketSize()));
-		System.out.println("MAX / AVG BUCKET SIZE:    " + (hashMap.maximumBucketSize() / hashMap.averageBucketSize()));
-		System.out.println("TOTAL EXECUTION TIME:     " + (executionTime - overheadExecutionTime) + "ms");
-		System.out.println("");
+//		System.out.println("");
+//		System.out.println("BUCKET UTILIZATION:       " + (hashMap.bucketUtilization() * 100) + "%");
+//		System.out.println("AVERAGE BUCKET SIZE:      " + (hashMap.averageBucketSize()));
+//		System.out.println("MAXIMUM BUCKET SIZE:      " + (hashMap.maximumBucketSize()));
+//		System.out.println("MAX / AVG BUCKET SIZE:    " + (hashMap.maximumBucketSize() / hashMap.averageBucketSize()));
+//		System.out.println("TOTAL EXECUTION TIME:     " + (executionTime - overheadExecutionTime) + "ms");
+//		System.out.println("");
 		
 		evenScore = (double)Math.round(evenScore * 100) / 100;
 		
-		System.out.println("TOTAL SCORE:              " + evenScore + " / " + maxScore);
-		System.out.println("");
+//		System.out.println("TOTAL SCORE:              " + evenScore + " / " + maxScore);
+//		System.out.println("");
 		
 		return totalScore;
 	}
