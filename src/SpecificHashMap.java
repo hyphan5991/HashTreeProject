@@ -1,233 +1,298 @@
-import java.util.ArrayList;
 import java.util.LinkedList;
 
+/**
+ * Created by timroels on 5/5/16.
+ */
 public class SpecificHashMap extends MyHashMap {
-//	static int[] primeTable = {2, 3, 5, 7, 11, 13, 17, 19, 23, 29, 31, 37, 41, 43, 47,
-//			53, 59, 61, 67, 71, 73, 79, 83, 89, 97, 101, 103, 107, 109,
-//			113, 127, 131, 137, 139, 149, 151, 157, 163, 167, 173, 179,
-//			181, 191, 193, 197, 199, 211, 223, 227, 229, 233, 239, 241,
-//			251, 257, 263, 269, 271, 277, 281, 283, 293, 307, 311, 313,
-//			317, 331, 337, 347, 349, 353, 359, 367, 373, 379, 383, 389,
-//			397, 401, 409, 419, 421, 431, 433, 439, 443, 449, 457, 461,
-//			463, 467, 479, 487, 491, 499, 503, 509, 521, 523, 541, 547,
-//			557, 563, 569, 571, 577, 587, 593, 599, 601, 607, 613, 617,
-//			619, 631, 641, 643, 647, 653, 659, 661, 673, 677, 683, 691,
-//			701, 709, 719, 727, 733, 739, 743, 751, 757, 761, 769, 773,
-//			787, 797, 809, 811, 821, 823, 827, 829, 839, 853, 857, 859,
-//			863, 877, 881, 883, 887, 907, 911, 919, 929, 937, 941, 947,
-//			953, 967, 971, 977, 983, 991, 997, 1009, 1013, 1019, 1021,
-//			1031, 1033, 1039, 1049, 1051, 1061, 1063, 1069, 1087, 1091,
-//			1093, 1097, 1103, 1109, 1117, 1123, 1129, 1151, 1153, 1163,
-//			1171, 1181, 1187, 1193, 1201, 1213, 1217, 1223, 1229, 1231,
-//			1237, 1249, 1259, 1277, 1279, 1283, 1289, 1291, 1297, 1301,
-//			1303, 1307, 1319, 1321, 1327, 1361, 1367, 1373, 1381, 1399,
-//			1409, 1423, 1427, 1429, 1433, 1439, 1447, 1451, 1453, 1459,
-//			1471, 1481, 1483, 1487, 1489, 1493, 1499, 1511, 1523, 1531,
-//			1543, 1549, 1553, 1559, 1567, 1571, 1579, 1583, 1597, 1601,
-//			1607, 1609, 1613, 1619, 1621, 1627, 1637, 1657, 1663, 1667,
-//			1669, 1693, 1697, 1699, 1709, 1721, 1723, 1733, 1741, 1747,
-//			1753, 1759, 1777, 1783, 1787, 1789, 1801, 1811, 1823, 1831,
-//			1847, 1861, 1867, 1871, 1873, 1877, 1879, 1889, 1901, 1907,
-//			1913, 1931, 1933, 1949, 1951, 1973, 1979, 1987, 1993, 1997,
-//			1999, 2003, 2011, 2017, 2027, 2029, 2039, 2053, 2063, 2069,
-//			2081, 2083, 2087, 2089, 2099, 2111, 2113, 2129, 2131, 2137,
-//			2141, 2143, 2153, 2161, 2179, 2203, 2207, 2213, 2221, 2237,
-//			2239, 2243, 2251, 2267, 2269, 2273, 2281, 2287, 2293, 2297,
-//			2309, 2311, 2333, 2339, 2341, 2347, 2351, 2357, 2371, 2377,
-//			2381, 2383, 2389, 2393, 2399, 2411, 2417, 2423, 2437, 2441,
-//			2447, 2459, 2467, 2473, 2477, 2503, 2521, 2531, 2539, 2543,
-//			2549, 2551, 2557, 2579, 2591, 2593, 2609, 2617, 2621, 2633,
-//			2647, 2657, 2659, 2663, 2671, 2677, 2683, 2687, 2689, 2693,
-//			2699, 2707, 2711, 2713, 2719, 2729, 2731, 2741, 2749, 2753,
-//			2767, 2777, 2789, 2791, 2797, 2801, 2803, 2819, 2833, 2837,
-//			2843, 2851, 2857, 2861, 2879, 2887, 2897, 2903, 2909, 2917,
-//			2927, 2939, 2953, 2957, 2963, 2969, 2971, 2999, 3001, 3011,
-//			3019, 3023, 3037, 3041, 3049, 3061, 3067, 3079, 3083, 3089,
-//			3109, 3119, 3121, 3137, 3163, 3167, 3169, 3181, 3187, 3191,
-//			3203, 3209, 3217, 3221, 3229, 3251, 3253, 3257, 3259, 3271,
-//			3299, 3301, 3307, 3313, 3319, 3323, 3329, 3331, 3343, 3347,
-//			3359, 3361, 3371, 3373, 3389, 3391, 3407, 3413, 3433, 3449,
-//			3457, 3461, 3463, 3467, 3469, 3491, 3499, 3511, 3517, 3527,
-//			3529, 3533, 3539, 3541, 3547, 3557, 3559, 3571};
-	int firstPrime;
-	int secondPrime;
 
-	LinkedList<String>[] buckets;
-	public SpecificHashMap() {
-		buckets = new LinkedList[59];
-		for (int i = 0; i < 59; i++){
-			buckets[i] = new LinkedList<String>();
-		}
-		firstPrime = 197;
-		secondPrime = 281;
+    public SpecificHashMap() {
+        buckets = new LinkedList[50];
+        for (int i = 0; i < 50; i++) {
+            buckets[i] = new LinkedList<String>();
+        }
+    }
 
-		// TODO: IMPLEMENT CONSTRUCTOR
+    @Override
+    protected int hash(String token) {
+        char firstletter= '?';
+        char secondletter ='?';
+        char thirdletter = '?';
+        char fourthletter = '?';
+        int base = 0;
+        firstletter = token.charAt(0);
+        secondletter = token.charAt(1);
+        if(token.length()>2) {
+             thirdletter = token.charAt(2);
+        }
+        if(token.length()>3) {
+            fourthletter = token.charAt(3);
+        }
+        switch (firstletter){
+            case 'a' :
+                switch (secondletter){
+                    case 'b':
+                        base = 0;
+                        break;
+                    case 's':
+                        base =1;
+                        break;
+                }
+                break;
+            case 'b':
+                switch(secondletter){
+                    case'o':
+                        base = 2;
+                        break;
+                    case 'r':
+                        base =3;
+                        break;
+                    case 'y':
+                        base = 4;
+                        break;
+                }
+                break;
+            case'c':
+                switch (secondletter){
+                    case 'a':
+                        switch (thirdletter){
+                            case's':
+                                base =5;
+                                break;
+                            case 't':
+                                base =6;
+                                break;
+                        }
+                        break;
+                    case'h':
+                        base =7;
+                        break;
+                    case 'l':
+                        base =8;
+                        break;
+                    case 'o':
+                        switch(thirdletter){
+                            case 'n':
+                                switch (fourthletter){
+                                    case's':
+                                        base =9;
+                                        break;
+                                    case 't':
+                                        base = 10;
+                                        break;
+                                }
+                                break;
+                        }
+                        break;
+                }
+                break;
+            case 'd':
+                switch(secondletter){
+                    case 'e':
+                        base =11;
+                            break;
+                    case'o':
+                        if(thirdletter == '?'){
+                            base = 12;
+                        }
+                        else{
+                            base = 13;}
+                        break;
+                }
+                break;
+            case'e':
+                switch (secondletter){
+                    case 'l':
+                        base =14;
+                        break;
+                    case 'n':
+                        base =15;
+                        break;
+                    case'x':
+                        base = 16;
+                        break;
+                }
+                break;
+            case 'f':
+                switch (secondletter){
+                    case 'i':
+                        if(token.length()<6){
+                            base = 17;
+                        }
+                        else
+                            base = 18;
+                        break;
+                    case 'l':
+                        base =19;
+                        break;
+                    case 'o':
+                        base =20;
+                        break;
+                }
+                break;
+            case 'g':
+                base = 21;
+                break;
+            case 'i':
+                switch (secondletter){
+                    case 'f':
+                        base = 22;
+                        break;
+                    case 'm':
+                        if(fourthletter =='l'){
+                            base =23;
+                        }
+                        else base = 24;
+                        break;
+                    case'n':
+                        switch (thirdletter){
+                            case 's':
+                                base =25;
+                                break;
+                            case 't':
+                                if(token.length()==3){
+                                    base = 26;
+                                }
+                                else
+                                    base = 27;
+                                break;
+                        }
+                        break;
+                        }
+                break;
+            case'l':
+                base = 28;
+                break;
+            case 'n':
+                switch (secondletter){
+                    case 'a':
+                        base =29;
+                        break;
+                    case 'e':
+                        base = 30;
+                        break;
+                }
+                break;
+            case 'p':
+                switch (secondletter){
+                    case 'a':
+                        base =31;
+                        break;
+                    case 'r':
+                        switch (thirdletter){
+                            case 'i':
+                                base =32;
+                                break;
+                            case 'o':
+                                base = 33;
+                                break;
+                        }
+                        break;
+                    case 'u':
+                        base = 34;
+                        break;
+                }
+                break;
+            case 'r':
+                base =35;
+                break;
+            case 's':
+                switch (secondletter){
+                    case 'h':
+                        base =36;
+                        break;
+                    case 't':
+                        switch (thirdletter){
+                            case 'a':
+                                base =37;
+                                break;
+                            case 'r':
+                                base =38;
+                                break;
+                        }
+                        break;
+                    case 'u':
+                        base =39;
+                        break;
+                    case'w':
+                        base =40;
+                        break;
+                    case 'y':
+                        base =41;
+                        break;
+                }
+                break;
+            case 't':
+                switch (secondletter){
+                    case 'h':
+                        switch (thirdletter){
+                            case 'i':
+                                base =42;
+                                break;
+                            case 'r':
+                                if(token.length()==5){
+                                    base =43;
+                                }
+                                else
+                                    base =44;
+                                break;
+                        }
+                        break;
+                    case 'r':
+                        switch (thirdletter){
+                            case 'a':
+                                base =45;
+                                break;
+                            case 'y':
+                                base = 46;
+                                break;
+                        }
+                        break;
+                }
+                break;
+            case 'v':
+                switch (thirdletter){
+                    case 'i':
+                        base =47;
+                        break;
+                    case 'l':
+                        base = 48;
+                        break;
+                }
+                break;
+            case 'w':
+                base =49;
+                break;
+                }
+        return base;
 
-	}
-
-	@Override
-	protected int hash(String token) {
-
-		// TODO: IMPLEMENT HASHING FUNCTION FOR GENERAL HASHMAP
-		String standIn = token.toLowerCase();
-		int base =  0;
-		int R = firstPrime;
-		for (int i = 0; i < token.length(); i ++){
-			switch(standIn.charAt(i)){
-
-				case 'e': base += (2 * i + R);
-					break;
-				case 't': base += (3 * i + R);
-					break;
-				case 'a': base += (5 * i + R);
-					break;
-				case 'o': base += (7 * i + R);
-					break;
-				case 'i': base += (11 * i + R);
-					break;
-				case 'n': base += (13 * i + R);
-					break;
-				case 's': base += (17 * i + R);
-					break;
-				case 'r': base += (19 * i + R);
-					break;
-				case 'h': base += (23 * i + R);
-					break;
-				case 'd': base += (29 * i + R);
-					break;
-				case 'l': base += (31 * i + R);
-					break;
-				case 'u': base += (37 * i + R);
-					break;
-				case 'c': base += (41 * i + R);
-					break;
-				case 'm': base += (43 * i + R);
-					break;
-				case 'f': base += (47 * i + R);
-					break;
-				case 'y': base += (53 * i + R);
-					break;
-				case 'w': base += (59 * i + R);
-					break;
-				case 'g': base += (61 * i + R);
-					break;
-				case 'p': base += (67 * i + R);
-					break;
-				case 'b': base += (71 * i + R);
-					break;
-				case 'v': base += (73 * i + R);
-					break;
-				case 'k': base += (79 * i + R);
-					break;
-				case 'x': base += (83 * i + R);
-					break;
-				case 'q': base += (89 * i + R);
-					break;
-				case 'j': base += (97 * i + R);
-					break;
-				case 'z': base += (101 * i + R);
-					break;
-				default: base += (103 * i + R );
-					break;
-
-			}
-		}
-		int S = secondPrime;
-		base = base * secondPrime;
+        }
 
 
+    @Override
+    public void add(String token) {
 
-		return base%59;
-	}
 
-	@Override
-	public void add(String token) {
+        // TODO: IMPLEMENT ADD METHOD USING BUCKETS
+        int index = hash(token);
+        this.buckets[index].add(token);
 
-		
-		// TODO: IMPLEMENT ADD METHOD USING BUCKETS
-		int index = hash(token);
-		this.buckets[index].add(token);
-	
-	}
+    }
 
-	@Override
-	public void display() {
-		for(int i = 0; i<buckets.length;i++){
-			System.out.print("bucket index " + i);
-			for(int j = 0; j<buckets[i].size(); j++){
-				System.out.print(buckets[i].get(j));
-			}
-			System.out.println();
-		}
-		// TODO: IMPLEMENT DISPLAY METHOD TO SHOW CONTENTS OF ALL BUCKETS
-		
-	}
-//	public static void main(String[] args) {
-//		MyHashMap test;
-//		double current;
-//		double top = 0;
-//		int firstP = 0;
-//		int secondP = 0;
-//		for (int i = 0; i < primeTable.length; i ++){
-//			for (int j = 0; j < primeTable.length; j ++){
-//				test = new GeneralHashMap(i, j);
-//				current = testHashMap(test, "keywords.txt", 30.0);
-//				if (top <= current){
-//					top = current;
-//					firstP = i;
-//					secondP = j;
-//					System.out.println( primeTable[firstP] + "," + primeTable[secondP]);
-//
-//				}
-//			}
-//		}
-//
-//
-//
-//	}
-public static void main(String[] args) {
-	SpecificHashMap hashm = new SpecificHashMap();
-	LinkedList<String> tokens = (LinkedList<String>) TextScan.scanTokens("keywords.txt");
-	for(int i =0; i< tokens.size(); i++){
-		hashm.add(tokens.get(i));
-	}
-	hashm.display();
+    @Override
+    public void display() {
+        for(int i = 0; i<buckets.length;i++){
+            System.out.print("bucket index " + i);
+            for(int j = 0; j<buckets[i].size(); j++){
+                System.out.print(buckets[i].get(j));
+            }
+            System.out.println();
+        }
+        // TODO: IMPLEMENT DISPLAY METHOD TO SHOW CONTENTS OF ALL BUCKETS
+
+    }
+    public static void main(String[] args){
+        SpecificHashMap hashm = new SpecificHashMap();
+        System.out.println(testHashMap(hashm,"keywords.txt", 30.0));
+        hashm.display();
+    }
 }
-//public static void main(String[] args){
-//
-//	LinkedList<String> tokens = (LinkedList<String>) TextScan.scanTokens("keywords.txt");
-//	for(int i = 0; i<697;i++){
-//		int maxlistlength =0;
-//		SpecificHashMap hasm= new SpecificHashMap(scoreof30primes.score30firstprimes[i],scoreof30primes.score30secondprimes[i]);
-//		for(int j =0; j< tokens.size(); j++){
-//			hasm.add(tokens.get(j));
-//		}
-//		for(int k=0; k<hasm.buckets.length;k++){
-//			if(hasm.buckets[k].size()>maxlistlength){
-//				maxlistlength = hasm.buckets[k].size();
-//			}
-//		}
-//		System.out.println(scoreof30primes.score30firstprimes[i]+","+scoreof30primes.score30secondprimes[i]+","+maxlistlength);
-//
-//
-//	}
-//}
-//	public static void main(String[] args){
-//		LinkedList<String> tokens = (LinkedList<String>) TextScan.scanTokens("keywords.txt");
-//		for(int i = 0; i<18;i++) {
-//			double avglistlength = 0;
-//			SpecificHashMap hasm = new SpecificHashMap(scoreof30primes.score30firstprimes[i], scoreof30primes.score30secondprimes[i]);
-//			for (int j = 0; j < tokens.size(); j++) {
-//				hasm.add(tokens.get(j));
-//			}
-//			for(int k=0; k <hasm.buckets.length;k++){
-//				if(hasm.buckets[k].size() != 0){
-//					avglistlength += hasm.buckets[k].size()/57.0;
-//				}
-//			}
-//			System.out.println(scoreof30primes.score30firstprimes[i]+","+scoreof30primes.score30secondprimes[i]+","+avglistlength);
-//
-//		}
-//	}
-}
-
