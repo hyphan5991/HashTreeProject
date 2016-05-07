@@ -62,7 +62,7 @@ public abstract class MyHashMap {
 		long executionTime = 0;
 		long overheadExecutionTime = 0;
 		
-		//System.out.println("ADDING ALL TOKENS");
+		System.out.println("ADDING ALL TOKENS");
 		
 		overheadExecutionTime = System.currentTimeMillis();
 		
@@ -77,44 +77,44 @@ public abstract class MyHashMap {
 		
 		executionTime = System.currentTimeMillis() - executionTime;
 		
-		//System.out.println("TESTING CORRECTNESS");
-		//System.out.println("");
+		System.out.println("TESTING CORRECTNESS");
+		System.out.println("");
 		
-		//System.out.print("BUCKETS INITIALIZED TEST: ");
+		System.out.print("BUCKETS INITIALIZED TEST: ");
 		if(!hashMap.testBucketsInitialized()) {
-			//System.out.println("FAIL");
-			//System.out.println("YOU MUST HAVE AT LEAST 15 BUCKETS");
+			System.out.println("FAIL");
+			System.out.println("YOU MUST HAVE AT LEAST 15 BUCKETS");
 			return -1.0;
 		}
 		else {
-			//System.out.println("PASS");
+			System.out.println("PASS");
 		}
 		
-		//System.out.print("ALL ELEMENTS ADDED TEST:  ");
+		System.out.print("ALL ELEMENTS ADDED TEST:  ");
 		if(!hashMap.testTotalElements(allTokens.size())) {
-			//System.out.println("FAIL");
+			System.out.println("FAIL");
 			return -1.0;
 		}
 		else {
-			//System.out.println("PASS");
+			System.out.println("PASS");
 		}
 		
-		//System.out.print("TOKEN DUPLCIATES TEST:    ");
+		System.out.print("TOKEN DUPLCIATES TEST:    ");
 		if(!hashMap.testDuplicates()) {
-			//System.out.println("FAIL");
+			System.out.println("FAIL");
 			return -1.0;
 		}
 		else {
-			//System.out.println("PASS");
+			System.out.println("PASS");
 		}
 		
-		//System.out.print("HASH CORRECTNESS TEST:    ");
+		System.out.print("HASH CORRECTNESS TEST:    ");
 		if(!hashMap.testHashCorrectness()) {
-			//System.out.println("FAIL");
+			System.out.println("FAIL");
 			return -1.0;
 		}
 		else {
-			//System.out.println("PASS");
+			System.out.println("PASS");
 		}
 		
 		double evenScore = maxScore * hashMap.proportional(2) * hashMap.proportional(5) * hashMap.proportional(10);
